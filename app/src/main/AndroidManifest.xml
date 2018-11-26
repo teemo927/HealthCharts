@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".year.PieActivity" />
-        <activity android:name=".year.PieActivity"></activity>
+        <activity android:name=".pie.PieActivity" />
+        <activity android:name=".bar.BarActivity" />
+        <activity android:name=".line.LineActivity"></activity>
     </application>
 
 </manifest>
