@@ -1,14 +1,18 @@
 package com.timo.healthcharts.line;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.timo.healthcharts.R;
+import com.timo.healthcharts.manager.ChartManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,23 +32,33 @@ public class LineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_line);
         ButterKnife.bind(this);
 
-        initLineChart();
+        initLineChart(lineChart);
         initLineData();
     }
 
-    private void initLineChart() {
+    private void initLineChart(LineChart chart) {
+        //设置表格描述label
+        Description description = new Description();
+        description.setText("我是表格描述");
+        description.setTextColor(Color.GREEN);
+        chart.setDescription(description);
+
+        ChartManager.setXAxis(chart);
+        ChartManager.setYAxis(chart);
     }
 
     private void initLineData() {
         List<Entry> entryList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            Entry entry = new Entry(i, new Random().nextInt(20) );
+            Entry entry = new Entry(i, new Random().nextInt(20));
             entry.describeContents();
             entryList.add(entry);
         }
         List<ILineDataSet> lineSet = new ArrayList<>();
         for (int i = 0; i < 1; i++) {
             LineDataSet lineDataSet = new LineDataSet(entryList, "折线图" + 1);
+            //设置显示到左边Y轴，适用于不同数据
+            lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
             lineSet.add(lineDataSet);
         }
         LineData lineData = new LineData(lineSet);
