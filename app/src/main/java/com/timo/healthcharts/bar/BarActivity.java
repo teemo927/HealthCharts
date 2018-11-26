@@ -39,12 +39,14 @@ public class BarActivity extends AppCompatActivity {
         for (int i = 0; i < 4; i++) {
             List<BarEntry> entryList = new ArrayList<>();
             for (int j = 0; j < 2; j++) {
-                BarEntry barEntry = new BarEntry(new Random().nextInt(20) + 10, new Random().nextInt(20) + 20);
+                BarEntry barEntry = new BarEntry(i, new Random().nextInt(20) + 20);
                 entryList.add(barEntry);
             }
             BarDataSet barDataSet = new BarDataSet(entryList, "");
             dataSets.add(barDataSet);
+            barDataSet.setColors(new int[] { R.color.red1, R.color.red2, R.color.red3, R.color.red4 }, this);
         }
+
         BarData barData = new BarData(dataSets);
         barData.setValueTextColor(Color.YELLOW);
         barChart.setData(barData);
