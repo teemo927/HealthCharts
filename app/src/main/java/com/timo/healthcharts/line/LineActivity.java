@@ -43,8 +43,11 @@ public class LineActivity extends AppCompatActivity {
         description.setTextColor(Color.GREEN);
         chart.setDescription(description);
 
-        ChartManager.setXAxis(chart);
-        ChartManager.setYAxis(chart);
+        ChartManager chartManager = ChartManager.getInstance();
+        chartManager.setXAxis(chart);
+        chartManager.setYAxis(chart);
+        chartManager.setLegend(chart);
+        chartManager.addLimitLine(chart);
     }
 
     private void initLineData() {
