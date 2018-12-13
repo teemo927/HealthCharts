@@ -39,7 +39,10 @@ public class PieActivity extends AppCompatActivity {
 
     private void initChart() {
         ChartManager chartManager = ChartManager.getInstance();
-        chartManager.setLegend(pieChart);
+        chartManager.setDesc(pieChart,"我是扇形图");
+        //弃用自带图例
+        pieChart.getLegend().setEnabled(false);
+//        chartManager.setLegend(pieChart);
 
         //显示百分比,此时不显示百分号
         pieChart.setUsePercentValues(true);
@@ -56,7 +59,7 @@ public class PieActivity extends AppCompatActivity {
     private void setPieData() {
         List<PieEntry> pieList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            PieEntry pieEntry = new PieEntry(new Random().nextInt(20) + 10, "年龄段是这样子的哦哟" + i);
+            PieEntry pieEntry = new PieEntry(new Random().nextInt(20) + 10, "" + i);
             pieList.add(pieEntry);
         }
         PieDataSet dataSet = new PieDataSet(pieList, "");

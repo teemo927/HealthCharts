@@ -7,6 +7,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -48,6 +49,14 @@ public class ChartManager {
 
     private ChartManager() {
 
+    }
+
+    public void setDesc(Chart chart, String text) {
+        //设置表格描述label
+        Description description = new Description();
+        description.setText(text);
+        description.setTextColor(Color.BLACK);
+        chart.setDescription(description);
     }
 
     /**

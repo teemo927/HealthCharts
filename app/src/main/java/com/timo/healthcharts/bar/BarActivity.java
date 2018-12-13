@@ -37,6 +37,7 @@ public class BarActivity extends AppCompatActivity {
     private void initChart(BarChart chart) {
 
         ChartManager chartManager = ChartManager.getInstance();
+        chartManager.setDesc(chart,"我是柱状图");
         chartManager.setTouchEvent(chart);
         chartManager.setXAxis(chart);
         chartManager.setYAxis(chart);

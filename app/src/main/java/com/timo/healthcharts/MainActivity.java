@@ -1,6 +1,7 @@
 package com.timo.healthcharts;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.view.View;
 
 import com.timo.healthcharts.bar.BarActivity;
 import com.timo.healthcharts.line.LineActivity;
+import com.timo.healthcharts.notice.NoticeUtil;
 import com.timo.healthcharts.pie.PieActivity;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -45,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NoticeUtil.sendNotification(this);
+        }
     }
 
     private void goToChart(int position) {

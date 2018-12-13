@@ -1,11 +1,9 @@
 package com.timo.healthcharts.line;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -37,13 +35,8 @@ public class LineActivity extends AppCompatActivity {
     }
 
     private void initLineChart(LineChart chart) {
-        //设置表格描述label
-        Description description = new Description();
-        description.setText("我是表格描述");
-        description.setTextColor(Color.GREEN);
-        chart.setDescription(description);
-
         ChartManager chartManager = ChartManager.getInstance();
+        chartManager.setDesc(chart,"我是折线图");
         chartManager.setXAxis(chart);
         chartManager.setYAxis(chart);
         chartManager.setLegend(chart);
