@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         mData.add("排行柱状图");
         mData.add("设置闹钟");
         mData.add("后台服务");
+        mData.add("滑动删除布局");
         rvChart.setAdapter(new CommonAdapter<String>(this, R.layout.item_chart, mData) {
             @Override
             protected void convert(ViewHolder holder, String s, final int position) {
@@ -92,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 5:
                 startService(new Intent(this, CustomTestService.class));
+                break;
+            case 6:
+                startActivity(new Intent(this,SwipeDeleteActivity.class));
                 break;
         }
     }

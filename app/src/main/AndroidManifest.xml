@@ -28,7 +28,6 @@
         <activity android:name=".line.LineActivity" />
         <activity android:name=".bar.RankBarActivity" />
         <activity android:name=".common.AlarmActivity">
-
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -49,6 +48,7 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name=".SwipeDeleteActivity" />
     </application>
 
 </manifest>
