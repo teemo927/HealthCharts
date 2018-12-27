@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.timo.healthcharts">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +26,29 @@
         <activity android:name=".pie.PieActivity" />
         <activity android:name=".bar.BarActivity" />
         <activity android:name=".line.LineActivity" />
+        <activity android:name=".bar.RankBarActivity" />
+        <activity android:name=".common.AlarmActivity">
+
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".common.AlarmClockService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":music" />
+        <service android:name=".common.CustomTestService" />
+
+        <receiver android:name=".common.AlarmReceiver">
+            <intent-filter>
+                <action android:name="alarm_receiver" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

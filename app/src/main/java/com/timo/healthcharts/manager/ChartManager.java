@@ -26,7 +26,7 @@ public class ChartManager {
     private static volatile ChartManager sInst = null;
 
     protected String[] mouth_value = new String[]{
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     };
 
     protected String[] year_health_value = new String[]{
@@ -88,7 +88,7 @@ public class ChartManager {
      */
     public void setXAxis(Chart chart) {
         XAxis xAxis = chart.getXAxis();
-        xAxis.setAxisMaximum(5);
+        xAxis.setAxisMaximum(10);
         xAxis.setAxisMinimum(-1f);
         //设置间隔
         xAxis.setGranularity(1f);
@@ -111,7 +111,7 @@ public class ChartManager {
         //设置网格颜色
         xAxis.setGridColor(Color.GREEN);
         //自定义X轴
-        xAxis.setValueFormatter(new XValueFormatter(year_health_value));
+        xAxis.setValueFormatter(new XValueFormatter(mouth_value));
     }
 
     /**
