@@ -13,7 +13,7 @@
         android:gravity="center"
         android:text="I can be dragged !" />
 
-    <TextView
+    <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"

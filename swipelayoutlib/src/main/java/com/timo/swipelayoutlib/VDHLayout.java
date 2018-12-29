@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 /**
+ * https://blog.csdn.net/lmj623565791/article/details/46858663
+ *
  * @author teem
  * @since 2018/12/27
  */
@@ -38,6 +40,8 @@ public class VDHLayout extends LinearLayout {
 
     private void init() {
         mDragHelper = ViewDragHelper.create(this, 1.0f, callback);
+
+        mDragHelper.setEdgeTrackingEnabled(ViewDragHelper.EDGE_LEFT);
     }
 
     @Override
@@ -59,7 +63,7 @@ public class VDHLayout extends LinearLayout {
     private ViewDragHelper.Callback callback = new ViewDragHelper.Callback() {
         @Override
         public boolean tryCaptureView(@NonNull View view, int i) {
-            return true;//所有的子元素都可以移动
+            return view != mEdgeTrackerView;
         }
 
 
@@ -71,6 +75,62 @@ public class VDHLayout extends LinearLayout {
         public int clampViewPositionVertical(@NonNull View child, int top, int dy) {
             return top;
         }
+
+        @Override
+        public void onViewReleased(@NonNull View releasedChild, float xvel, float yvel) {
+            super.onViewReleased(releasedChild, xvel, yvel);
+            //mAutoBackView手指释放时可以自动回去
+            if (releasedChild == mAutoBackView) {
+                mDragHelper.settleCapturedViewAt(mAutoBackOriginPos.x, mAutoBackOriginPos.y);
+                invalidate();
+            }
+        }
+
+        //在边界拖动时回调
+        @Override
+        public void onEdgeDragStarted(int edgeFlags, int pointerId) {
+            mDragHelper.captureChildView(mEdgeTrackerView, pointerId);
+        }
+
+        //用Button测试，或者给TextView添加了clickable = true
+        @Override
+        public int getViewHorizontalDragRange(View child) {
+            return getMeasuredWidth() - child.getMeasuredWidth();
+        }
+
+        //用Button测试，或者给TextView添加了clickable = true
+        @Override
+        public int getViewVerticalDragRange(View child) {
+            return getMeasuredHeight() - child.getMeasuredHeight();
+        }
+
     };
 
+    @Override
+    public void computeScroll() {
+        if (mDragHelper.continueSettling(true)) {
+            invalidate();
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+
+        //保存了最开启的位置信息
+        mAutoBackOriginPos.x = mAutoBackView.getLeft();
+        mAutoBackOriginPos.y = mAutoBackView.getTop();
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        if (getChildCount() < 3) {
+            return;
+        }
+
+        mDragView = getChildAt(0);
+        mAutoBackView = getChildAt(1);
+        mEdgeTrackerView = getChildAt(2);
+    }
 }
