@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.timo.swipelayoutlib.VDHLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="#44ff0000"
+        android:gravity="center"
+        android:text="I can be dragged !" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="#4400ff00"
+        android:gravity="center"
+        android:text="返回原来的位置" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="#440000ff"
+        android:gravity="center"
+        android:text="边界移动时对View进行捕获" />
+</com.timo.swipelayoutlib.VDHLayout>

@@ -22,6 +22,8 @@ import com.timo.healthcharts.common.AlarmClockService;
 import com.timo.healthcharts.common.AlarmReceiver;
 import com.timo.healthcharts.common.CustomTestService;
 import com.timo.healthcharts.common.NotificationUtil;
+import com.timo.healthcharts.drag.DragActivity;
+import com.timo.healthcharts.drag.SwipeDeleteActivity;
 import com.timo.healthcharts.line.LineActivity;
 import com.timo.healthcharts.pie.PieActivity;
 import com.zhy.adapter.recyclerview.CommonAdapter;
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         mData.add("设置闹钟");
         mData.add("后台服务");
         mData.add("滑动删除布局");
+        mData.add("拖拽布局");
         rvChart.setAdapter(new CommonAdapter<String>(this, R.layout.item_chart, mData) {
             @Override
             protected void convert(ViewHolder holder, String s, final int position) {
@@ -96,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 6:
                 startActivity(new Intent(this,SwipeDeleteActivity.class));
+                break;
+            case 7:
+                startActivity(new Intent(this,DragActivity.class));
                 break;
         }
     }

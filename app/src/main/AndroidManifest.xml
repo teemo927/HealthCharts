@@ -48,7 +48,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".SwipeDeleteActivity" />
+        <activity android:name=".drag.SwipeDeleteActivity" />
+        <activity android:name=".drag.DragActivity"></activity>
     </application>
 
 </manifest>
